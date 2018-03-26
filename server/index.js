@@ -16,7 +16,7 @@ app.use(json());
 
 app.get("/api/heroes", heroCtrl.getHeroes);
 app.post("/api/heroes", heroCtrl.postHeroes);
-// app.put("/api/heroe/:ids", heroCtrl.putHeroes);
+app.put("/api/heroes/:id", heroCtrl.updateHeroes);
 // app.delete("/api/heroes/:id", heroCtrl.deleteHeroes);
 
 

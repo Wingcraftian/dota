@@ -7,10 +7,11 @@ const app = express();
 
 module.exports = {
     getHeroes: (req, res) => {
+        console.log("get")
 if (!heroes.length) {
     axios.get(`https://api.opendota.com/api/heroes`)
     .then(list => {
-        // console.log(list)
+        console.log(list)
         heroes = list.data;
         res.status(200).json(heroes);
     })
@@ -33,24 +34,25 @@ res.status(200).json(heroes);
    
    
    
-//     updateHeroes: (req, res) => {
-// const {id} = req.params;
-// const {name,birth_year} = req.body;
-// characters.forEach(hero => {
-//     if (hero.url.split("/")[5] === id) {
-//         hero.name = name;
-//         hero.primary_attr = primary_attr;
-//         hero.attack_type = attack_type;
-//         hero.roles = roles;
-//     }
-// });
-// res.status(200).json(heroes);
-//     },
+    updateHeroes: (req, res) => {
+const {id} = req.params;
+const { name } = req.body;
+heroes.forEach(hero => {
+    if (hero.id === parseInt(id)) {
+        console.log("found hero")
+        hero.name = name;
+    }
+});
+res.status(200).json(heroes);
+    },
    
    
    
    
 //     deleteHeroes: (req, res) => {
 // const { id } = req.params;
+// let index = heroes.findIndex(person => person.url.split("/")[] === id)
+// heroes.splice(index,1);
+// res.status(200).json(heroes);
 //     }
 }

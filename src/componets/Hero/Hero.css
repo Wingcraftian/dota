@@ -1,0 +1,9 @@
+.card-main {
+
+}
+.card-button {
+    width: 50px;
+    height: 20px;
+    color: black;
+    background-clip: teal;
+}
