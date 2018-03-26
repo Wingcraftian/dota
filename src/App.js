@@ -4,16 +4,18 @@ import axios from "axios";
 import Hero from "./componets/Hero/Hero";
 import AddHero from "./componets/AddHero/AddHero";
 import './App.css';
+import Title from './componets/Title/Title';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      heroes: []
+      heroes: [],
+      title: "Heroes"
     }
     this.updateHeroes = this.updateHeroes.bind(this);
     this.deleteHeroes = this.deleteHeroes.bind(this);
-    this.newHeroes = this.newHeroes.bind(this);
+    this.postHeroes = this.postHeroes.bind(this);
   }
   componentDidMount(){
 axios
@@ -49,8 +51,9 @@ axios
   }
 
   
-  newHeroes(name, primary_attr, attack_type, roles) {
+  postHeroes(name, primary_attr, attack_type, roles) {
    axios
+
    .post("/api/heroes", {name, primary_attr, attack_type, roles})
    .then(res => {this.setState({
      heroes: res.data
@@ -68,13 +71,16 @@ axios
   
   
   render() {
-    const { heroes } = this.state;
+    const {title, heroes } = this.state;
     let heroesList = heroes.map(heroes => {
       return (
+        
         <Hero
         key={heroes.id}
 
 updateHero = {this.updateHeroes}
+deleteHeroes = {this.deleteHeroes}
+postHeroes = {this.deleteHeroes}
         id={heroes.id}
         name={heroes.name}
         primary_att={heroes.primary_attr}
@@ -86,15 +92,16 @@ updateHero = {this.updateHeroes}
 
     return (
       <div className="App">
+      <Title header = {title}/>
         <header className="App-header">
         <img id= "logo" src={logo.png} alt="" />
         </header>
         <div className="App-body">
          <div className="add-container">
-         <AddHero newHeroes={this.newHeroes} />
+         <AddHero postHeroes={this.postHeroes} />
          </div>
          <h3>Hero List</h3>
-         <div className="card-container">{heroesList}></div>
+         <div className="card-container">{heroesList}</div>
         </div>
       </div>
     );

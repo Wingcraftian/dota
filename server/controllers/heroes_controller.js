@@ -26,7 +26,7 @@ if (!heroes.length) {
     postHeroes: (req, res) => {
 const {name, primary_attr, attack_type, roles} = req.body;
 let url = `https://api.opendota.com/api/heroes/${newId}/`;
-heroes.push({url, name,primary_attr, attack_type, roles});
+heroes.unshift({url, name,primary_attr, attack_type, roles});
 newId++;
 res.status(200).json(heroes);
     },
@@ -49,10 +49,10 @@ res.status(200).json(heroes);
    
    
    
-//     deleteHeroes: (req, res) => {
-// const { id } = req.params;
-// let index = heroes.findIndex(person => person.url.split("/")[] === id)
-// heroes.splice(index,1);
-// res.status(200).json(heroes);
-//     }
+    deleteHeroes: (req, res) => {
+const { id } = req.params;
+let index = heroes.findIndex(hero => hero.id === parseInt(id))
+heroes.splice(index,1);
+res.status(200).json(heroes);
+    }
 }

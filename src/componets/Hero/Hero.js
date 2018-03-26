@@ -104,7 +104,7 @@ class Hero extends Component {
 
 
 render(){
-    const { deleteHero, id} = this.props;
+    const { deleteHeroes, id} = this.props;
     const { inputSwitch, name, primary_attr, attack_type, roles} = this.state;
     return (
         <div className="card-main">
@@ -117,7 +117,7 @@ render(){
                 <button className="card-button" onClick={this.handleSwitch}>
                  Edit
                 </button>
-                <button className="card-button" onClick={() => deleteHero(id)}>
+                <button className="card-button" onClick={() => deleteHeroes(id)}>
                  Delete
                  </button>
 

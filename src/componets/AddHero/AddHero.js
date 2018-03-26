@@ -1,5 +1,5 @@
 import React, {Component } from "react";
-// import "./AddHero.css";
+import "./AddHero.css";
 
 class AddHero extends Component {
     constructor() {
@@ -8,14 +8,17 @@ class AddHero extends Component {
             name: "",
             primary_attr: "",
             attack_type: "",
-            roles: ""
+            roles: "",
+          
         };
+      
         this.handleName = this.handleName.bind(this);
         this.handlePrimary_attr = this.handlePrimary_attr.bind(this)
         this.handleAttack_type = this.handleAttack_type.bind(this)
         this.handleRoles = this.handleRoles.bind(this)
         this.handleConfirm = this.handleConfirm.bind(this)
     }
+    
     handleName(val) {
         this.setState({
             name: val
@@ -36,16 +39,17 @@ class AddHero extends Component {
             roles: val
         });
     }
-    handleConfirm(val) {
-        const { newHeroes } = this.props;
+    handleConfirm() {
+        const { postHeroes } = this.props;
         const { name, primary_attr, attack_type, roles } = this.state;
-        newHeroes(name, primary_attr, attack_type, roles)
+        postHeroes(name, primary_attr, attack_type, roles)
         this.setState({
             name: "",
             primary_attr: "",
             attack_type: "",
-            roles: ""
-
+            roles: "",
+           
+ 
         });
     }
     render() {
@@ -53,33 +57,41 @@ class AddHero extends Component {
         return (
             <div className="add-main">
             <h3> Create Hero </h3>
+            
             <input
-            className="add-input"
+            className="card-input"
             placeholder="name"
             value={name}
-            onchange={e => this.handleName(e.target.value)} />
-            
+            onChange={e => this.handleName(e.target.value)} />
+          
+       
+           
             <input
             className="add-input"
             placeholder="Primary_attr"
             value={primary_attr}
-            onchange={e => this.handlePrimary_attr(e.target.value)} />
+            onChange={e => this.handlePrimary_attr(e.target.value)} />
+
+
 
             <input
             className="add-input"
             placeholder="Attack_type"
             value={attack_type}
-            onchange={e => this.handleAttack_type(e.target.value)} />
+            onChange={e => this.handleAttack_type(e.target.value)} />
+
+
 
             <input
             className="add-input"
             placeholder="Role"
             value={roles}
-            onchange={e => this.handleRoles(e.target.value)} />
+            onChange={e => this.handleRoles(e.target.value)} />
            
             <button className= "add-button" onClick={this.handleConfirm}>
             Create
             </button>
+            
            </div>
         );
     }
